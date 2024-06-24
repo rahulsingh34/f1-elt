@@ -1,13 +1,19 @@
 from airflow import DAG
 from datetime import datetime
 from airflow.operators.python import PythonOperator
+from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.hooks.S3_hook import S3Hook
 import pandas as pd
+from sqlalchemy import create_engine
 
 # Variables
 BUCKET = 'f1-source'
 AWS_CONN_ID = 'aws_default'
 POSTGRES_CONN_ID = 'postgres_localhost'
+
+# Postgres Connection
+sqlalchemy_url = PostgresHook(postgres_conn_id=POSTGRES_CONN_ID).sqlalchemy_url
+engine = create_engine(sqlalchemy_url)
 
 # Defaults
 default_args = {
@@ -39,13 +45,13 @@ def push_to_postgres(**kwargs):
         # Download the file
         file = hook.download_file(bucket_name=BUCKET, key=key, preserve_file_name=True)
 
-        # INP: Load CSV to Postgres
+        # Read and push to Postgres
         df = pd.read_csv(file)
-        #df.to_sql(name=key, con=POSTGRES_CONN_ID, if_exists='replace', index=False)
+        df.to_sql(name=key.replace('.csv', ''), con=engine, if_exists='replace', index=False)
 
 # DAG
 with DAG(
-    dag_id='load_from_s3',
+    dag_id='f1-etl',
     default_args=default_args,
     description='Load data from S3 to staging tables',
     schedule_interval=None,
