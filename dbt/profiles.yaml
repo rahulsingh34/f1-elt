@@ -1,0 +1,11 @@
+profile:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      user: airflow
+      password: "{{ env_var('POSTGRES_PASSWORD') }}"
+      port: 5432
+      dbname: postgres
+      schema: postgres
