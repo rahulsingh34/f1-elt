@@ -4,6 +4,7 @@ from airflow.operators.python import PythonOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.hooks.S3_hook import S3Hook
 import pandas as pd
+import numpy as np
 from sqlalchemy import create_engine
 
 # Variables
@@ -45,8 +46,9 @@ def push_to_postgres(**kwargs):
         # Download the file
         file = hook.download_file(bucket_name=BUCKET, key=key, preserve_file_name=True)
 
-        # Read and push to Postgres
+        # Read, clean, and push to Postgres
         df = pd.read_csv(file)
+        df.replace(r'\N', np.nan, inplace=True)
         df.to_sql(name=key.replace('.csv', ''), con=engine, if_exists='replace', index=False)
 
 # DAG
