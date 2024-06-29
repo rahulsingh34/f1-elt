@@ -1,6 +1,7 @@
 from airflow import DAG
 from datetime import datetime
 from airflow.operators.python import PythonOperator
+from airflow.operators.bash_operator import BashOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.hooks.S3_hook import S3Hook
 import pandas as pd
@@ -10,7 +11,7 @@ from sqlalchemy import create_engine
 # Variables
 BUCKET = 'f1-source'
 AWS_CONN_ID = 'aws_default'
-POSTGRES_CONN_ID = 'postgres_localhost'
+POSTGRES_CONN_ID = 'rds'
 
 # Postgres Connection
 sqlalchemy_url = PostgresHook(postgres_conn_id=POSTGRES_CONN_ID).sqlalchemy_url
@@ -72,4 +73,10 @@ with DAG(
         provide_context=True
     )
 
-    list_files_in_s3 >> push_to_postgres
+    dbt_run = BashOperator(
+        task_id='dbt_run',
+        bash_command='dbt run --project-dir /opt/airflow/dbt --profiles-dir /opt/airflow/dbt',
+        dag=dag,
+    )
+
+    list_files_in_s3 >> push_to_postgres >> dbt_run
