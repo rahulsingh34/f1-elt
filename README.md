@@ -1,6 +1,6 @@
 # F1 ETL Pipeline 🏎️
 
-Designed and orchestrated an ETL pipeline for F1 data.
+Designed and orchestrated a batch ETL pipeline for F1 data.
 
 ### [View Dashboard (INP)](https://github.com/rahulsingh34/f1-etl)
 
