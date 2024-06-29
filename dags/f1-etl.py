@@ -1,5 +1,5 @@
 from airflow import DAG
-from datetime import datetime
+from datetime import datetime, timedelta
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash_operator import BashOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
@@ -24,7 +24,8 @@ default_args = {
     'start_date': datetime(2024, 6, 1),
     'email_on_failure': False,
     'email_on_retry': False,
-    'retries': 1
+    'retries': 1,
+    'retry_delay': timedelta(minutes=5),
 }
 
 # List files in bucket
@@ -56,7 +57,7 @@ def push_to_postgres(**kwargs):
 with DAG(
     dag_id='f1-etl',
     default_args=default_args,
-    description='Load data from S3 to staging tables',
+    description='Load data from S3 to RDS and then run dbt models',
     schedule_interval=None,
     catchup=False,
 ) as dag:
@@ -75,8 +76,7 @@ with DAG(
 
     dbt_run = BashOperator(
         task_id='dbt_run',
-        bash_command='dbt run --project-dir /opt/airflow/dbt --profiles-dir /opt/airflow/dbt',
-        dag=dag,
+        bash_command='dbt run --project-dir /opt/airflow/dbt --profiles-dir /opt/airflow/dbt'
     )
 
     list_files_in_s3 >> push_to_postgres >> dbt_run
