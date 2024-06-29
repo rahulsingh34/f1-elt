@@ -2,6 +2,8 @@
 
 Designed and orchestrated an ETL pipeline for F1 data.
 
+### [View Dashboard (INP)](https://github.com/rahulsingh34/f1-etl)
+
 ### DAG Overview
 - Get CSVs from S3 bucket
 - Process the files using Pandas and push them to RDS
@@ -15,3 +17,4 @@ Designed and orchestrated an ETL pipeline for F1 data.
 - Airflow
 - AWS (S3 + RDS PostgreSQL)
 - DBT
+- Looker Studio
