@@ -1,11 +1,11 @@
-profile:
+f1_etl:
   target: dev
   outputs:
     dev:
       type: postgres
-      host: localhost
+      host: "{{ env_var('RDS_HOST') }}"
       user: airflow
       password: "{{ env_var('POSTGRES_PASSWORD') }}"
       port: 5432
       dbname: postgres
-      schema: postgres
+      schema: public
