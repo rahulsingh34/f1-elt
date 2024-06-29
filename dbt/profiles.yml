@@ -5,7 +5,7 @@ f1_etl:
       type: postgres
       host: "{{ env_var('RDS_HOST') }}"
       user: airflow
-      password: "{{ env_var('POSTGRES_PASSWORD') }}"
+      password: "{{ env_var('RDS_PASSWORD') }}"
       port: 5432
       dbname: postgres
       schema: public
