@@ -4,12 +4,12 @@ Designed and orchestrated a batch ETL pipeline for F1 data.
 
 ### [View Dashboard (INP)](https://github.com/rahulsingh34/f1-etl)
 
-### DAG Overview
+### Overview
 - Get CSVs from S3 bucket
 - Process the files using Pandas and push them to RDS
 - Run DBT model(s)
 
-### Pipeline Diagram
+### Diagram
 ![diagram](diagram.png)
 
 ### Tools & Technologies
