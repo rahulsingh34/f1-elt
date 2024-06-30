@@ -4,12 +4,12 @@ Designed and orchestrated a batch ETL pipeline for F1 data.
 
 ### [View Dashboard](https://lookerstudio.google.com/u/2/reporting/726a8752-3a0c-45a2-9064-f091a137e920/page/FRM4D)
 
-### DAG Overview
+### Overview
 - Get CSVs from S3 bucket
 - Process the files using Pandas and push them to RDS
 - Run DBT model(s)
 
-### Pipeline Diagram
+### Diagram
 ![diagram](diagram.png)
 
 ### Tools & Technologies
