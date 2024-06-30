@@ -8,7 +8,7 @@ Designed and orchestrated a batch ETL pipeline for F1 data.
 - Get CSVs from S3 bucket
 - Process the files using Pandas and push them to RDS
 - Run DBT model(s)
-- Use model in Looker Studio dashboard
+- Use data model to create dashboard in Looker Studio
 
 ### Diagram
 ![diagram](diagram.png)
