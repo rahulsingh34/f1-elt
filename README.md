@@ -2,7 +2,7 @@
 
 Designed and orchestrated a batch ETL pipeline for F1 data.
 
-### [View Dashboard (INP)](https://github.com/rahulsingh34/f1-etl)
+### [View Dashboard](https://lookerstudio.google.com/u/2/reporting/726a8752-3a0c-45a2-9064-f091a137e920/page/FRM4D)
 
 ### DAG Overview
 - Get CSVs from S3 bucket
