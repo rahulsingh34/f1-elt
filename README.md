@@ -1,6 +1,6 @@
 # F1 ETL Pipeline 🏎️
 
-Designed and orchestrated a batch ETL pipeline for F1 data.
+Designed and orchestrated a batch ETL pipeline for Formula 1 data.
 
 ### [View Dashboard](https://lookerstudio.google.com/u/2/reporting/726a8752-3a0c-45a2-9064-f091a137e920/page/FRM4D)
 
