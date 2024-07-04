@@ -20,4 +20,4 @@ Designed and orchestrated a batch ETL pipeline for Formula 1 data.
 - DBT
 - Looker Studio
 
-Note: While ideal, Redshift was note used due to costs.
+Note: While ideal, Redshift was not used due to costs (thanks Jeff).
