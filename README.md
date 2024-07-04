@@ -19,3 +19,5 @@ Designed and orchestrated a batch ETL pipeline for Formula 1 data.
 - AWS (S3 + RDS PostgreSQL)
 - DBT
 - Looker Studio
+
+Note: While ideal, Redshift was note used due to costs.
