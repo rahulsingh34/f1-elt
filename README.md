@@ -17,7 +17,7 @@ Designed and orchestrated a batch ELT pipeline for Formula 1 data.
 - Docker
 - Airflow
 - AWS (S3 + RDS PostgreSQL)
-- DBT
+- dbt
 - Looker Studio
 
 Note: While Redshift would be the ideal tool for analytical processing, it was not used due to costs (thanks Jeff).
